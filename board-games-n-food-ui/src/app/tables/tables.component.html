@@ -1,0 +1,21 @@
+<h2>My Tables</h2>
+
+<div>
+  <h2>Create Table</h2>
+  <div>
+    <label>code:
+      <input
+      (keyup.enter)="addTable()"
+       [(ngModel)]="code" placeholder="code"/>
+    </label>
+
+    <button (click)="addTable()">Add</button>
+  </div>
+
+</div>
+
+<ul class="tables">
+  <li *ngFor = "let table of tables">
+    <span class="badge">{{table.id}}</span> {{table.code}}
+  </li>
+</ul>
