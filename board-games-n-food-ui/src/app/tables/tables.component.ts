@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Table } from "./table";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Table } from "./model/table";
 
-import { TableService } from "../tables/table.service";
+import { TableService } from "../tables/service/table.service";
 
 @Component({
   selector: 'app-tables',
@@ -9,7 +9,9 @@ import { TableService } from "../tables/table.service";
   styleUrls: ['./tables.component.css']
 })
 export class TablesComponent implements OnInit {
+  @Output() close = new EventEmitter();
 
+  error: any;
   tables: Table[];
 
   code :string;
@@ -25,10 +27,19 @@ export class TablesComponent implements OnInit {
         .subscribe(tables => this.tables = tables);
   }
 
-  addTable() {
+  addTable(): void {
     if (this.code) {
-      this.tables.push({ id: parseInt(this.code), code: this.code });
+      this.tableService.putTable(this.code).subscribe(success => {
+        if (success) {
+          this.getTables()
+        }
+      }, error => (this.error = error));
+
     }
+  }
+
+  goBack(savedTable: Table = null): void {
+    this.close.emit(savedTable);
   }
 
 }

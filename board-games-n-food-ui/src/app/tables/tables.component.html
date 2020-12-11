@@ -12,6 +12,7 @@
     <button (click)="addTable()">Add</button>
   </div>
 
+  <div class="error" *ngIf="error">{{error}}</div>
 </div>
 
 <ul class="tables">
