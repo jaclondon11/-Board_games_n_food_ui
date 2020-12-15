@@ -1,22 +1,28 @@
-<h2>My Tables</h2>
+<div class="container-fluid">
+  <h2>My Tables</h2>
 
-<div>
-  <h2>Create Table</h2>
-  <div>
-    <label>code:
-      <input
-      (keyup.enter)="addTable()"
-       [(ngModel)]="code" placeholder="code"/>
-    </label>
-
-    <button (click)="addTable()">Add</button>
+  <div class="form">
+    <h2>Create Table</h2>
+    <form>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-2">
+            <label for="code">Code:</label>
+           <input class="form-control" id="code" placeholder="Enter code"
+            name="code" (keyup.enter)="addTable()" [(ngModel)]="code"
+            required="true">
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-default" (click)="addTable()">Add</button>
+      <div class="error" *ngIf="error">{{error.mensaje}}</div>
+    </form>
   </div>
 
-  <div class="error" *ngIf="error">{{error}}</div>
-</div>
+  <ul class="tables">
+    <li *ngFor = "let table of tables">
+      <span class="badge">{{table.id}}</span> {{table.code}}
+    </li>
+  </ul>
 
-<ul class="tables">
-  <li *ngFor = "let table of tables">
-    <span class="badge">{{table.id}}</span> {{table.code}}
-  </li>
-</ul>
+</div>

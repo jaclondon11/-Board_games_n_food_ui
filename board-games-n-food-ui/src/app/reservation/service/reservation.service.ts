@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
+import { Reservation } from '../model/reservation';
 
 import { Observable, throwError as observableThrowError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
 
-import { Table } from "../model/table";
+import { catchError, map } from 'rxjs/operators';
 
 export interface Options {
   headers?: HttpHeaders;
 }
-
 @Injectable({
   providedIn: 'root'
 })
-export class TableService {
+export class ReservationService {
 
-  private tablesUrl = '/api/mesa';  // URL to web api
+  private url = '/api/reserva';  // URL to web api
 
   constructor(private http: HttpClient) { }
 
@@ -25,17 +24,13 @@ export class TableService {
     };
   }
 
-  getTables(): Observable<Table[]> {
-    return this.http.get<Table[]>(this.tablesUrl )
-  }
-
-  putTable(code: string): Observable<any> {
+  putReservation(reservation: Reservation): Observable<Reservation> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    const table = JSON.stringify({code : code});
+    const reservationJson = JSON.stringify(reservation);
     return this.http
-      .put<Table>(this.tablesUrl, table, this.createDefaultOptions())
+      .put<Reservation>(this.url, reservationJson, this.createDefaultOptions())
       .pipe(catchError(this.handleError));
   }
 

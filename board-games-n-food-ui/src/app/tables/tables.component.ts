@@ -32,10 +32,15 @@ export class TablesComponent implements OnInit {
       this.tableService.putTable(this.code).subscribe(success => {
         if (success) {
           this.getTables()
+          this.clearForm()
         }
       }, error => (this.error = error));
-
     }
+  }
+
+  clearForm(): void {
+    this.code = ""
+    this.error = null;
   }
 
   goBack(savedTable: Table = null): void {

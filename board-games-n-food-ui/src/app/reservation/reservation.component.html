@@ -1,0 +1,79 @@
+
+<div class="container-fluid">
+  <h2>Reservations</h2>
+
+  <div class="form">
+    <h2>Create Reserva</h2>
+    <form>
+      <div class="form-group">
+
+        <div class="row">
+          <div class="col-sm-2">
+            <label for="titular">Titular:</label>
+          <input class="form-control" id="titular" placeholder="Enter titular"
+            name="titular"
+            maxlength="100"
+            [(ngModel)]="reservation.titular"
+            required="true">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-2">
+            <label for="game">Game:</label>
+            <select class="form-control" id="game" name="game" [(ngModel)]="reservation.game" required="true">
+              <option value="">Select one</option>
+              <option *ngFor = "let game of gameList">{{game}}</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-sm-2">
+            <label for="numberPeople">Amount of people:</label>
+          <input class="form-control" id="numberPeople" placeholder="Enter Amount of people"
+            name="numberPeople"
+            type="number"
+            min="1"
+            max="10"
+            [(ngModel)]="reservation.numberPeople"
+            required="true">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-2">
+            <label for="reservationDate">Reservation Date:</label>
+          <input class="form-control" id="reservationDate" placeholder="Enter Reservation Date"
+            name="reservationDate"
+            type="date"
+            placeholder="yyyy-MM-dd"
+            min="{{today| date:'yyyy-MM-dd'}}"
+            [value]="reservationDate | date:'yyyy-MM-dd'" (input)="reservationDate=parseDate($event.target.value)"
+            required="true">
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-sm-2">
+            <label for="reservationTime">Reservation Hour:</label>
+          <input class="form-control" id="reservationTime" placeholder="Enter Reservation Hour"
+            name="reservationTime"
+            type="time"
+            min="12:00"
+            min="17:00"
+            [(ngModel)]="reservationTime"
+            required="true">
+          </div>
+          <span class="validity"></span>
+          {{reservationTime}}
+        </div>
+
+      </div>
+      <button type="submit" class="btn btn-default" (click)="createReserva()">Add</button>
+      <div class="error" *ngIf="error">{{error.mensaje}}</div>
+    </form>
+  </div>
+</div>

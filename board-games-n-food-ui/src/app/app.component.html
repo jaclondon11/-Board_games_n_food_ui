@@ -1,2 +1,13 @@
-<h1>{{title}}</h1>
-<app-tables></app-tables>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/">{{title}}</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/tables">Tables</a></li>
+      <li><a routerLink="/reservation">Reservations</a></li>
+    </ul>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
