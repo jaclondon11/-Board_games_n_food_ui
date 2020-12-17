@@ -1,0 +1,12 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><a id="linkTable" routerLink="./" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">Reservation</a></li>
+      <li><a id="linkCreateTable" routerLink="./create" routerLinkActive="active">Create reservation</a></li>
+      <!-- <li><a id="linkListMesa" routerLink="./list" routerLinkActive="active">List table</a></li> -->
+    </ul>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

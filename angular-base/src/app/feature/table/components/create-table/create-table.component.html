@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <h2>Create Table</h2>
+  <form [formGroup]="tableForm">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2">
+          <label for="code">Code:</label>
+          <input validar type="text" id="tableCode" name="code" placeholder="Enter code"
+            (keyup.enter)="create()"
+            class="form-control" formControlName="code">
+        </div>
+      </div>
+    </div>
+
+    <button id="addTableButton" type="submit" class="btn btn-default" (click)="create()">Add</button>
+
+  </form>
+</div>
